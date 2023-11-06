@@ -1,0 +1,88 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "type": "object",
+    "properties": {
+      "workflows": {
+        "type": "array",
+        "items": [
+          {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string"
+              },
+              "description": {
+                "type": "string"
+              },
+              "runAfter": {
+                "type": "string"
+              },
+              "activities": {
+                "type": "array",
+                "items": [
+                  {
+                    "type": "object",
+                    "properties": {
+                      "name": {
+                        "type": "string"
+                      },
+                      "description": {
+                        "type": "string"
+                      },
+                      "type": {
+                        "type": "string",
+                        "enum": ["CreateDirectory", "RunWindowsService", "CopyFiles"]
+                      },
+                      "runAfter": {
+                        "type": "string"
+                      },
+                      "rollback": {
+                        "type": "boolean"
+                      },
+                      "parameters": {
+                        "type": "array",
+                        "items": [
+                          {
+                            "type": "object",
+                            "properties": {
+                              "name": {
+                                "type": "string"
+                              },
+                              "value": {
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "name",
+                              "value"
+                            ]
+                          }
+                        ]
+                      }
+                    },
+                    "required": [
+                      "name",
+                      "description",
+                      "type",
+                      "runAfter",
+                      "rollback",
+                      "parameters"
+                    ]
+                  }
+                ]
+              }
+            },
+            "required": [
+              "name",
+              "description",
+              "runAfter",
+              "activities"
+            ]
+          }
+        ]
+      }
+    },
+    "required": [
+      "workflows"
+    ]
+  }

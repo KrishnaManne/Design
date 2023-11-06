@@ -1,0 +1,78 @@
+{
+	"workflows": [
+	  {
+		"name": "firstworkflow",
+		"description": "first workflow description",
+		"runAfter": "",
+		"activities": [
+		  {
+			"name": "createdirectory",
+			"description": "create directory recursively",
+			"type": "CreateDirectory",
+			"runAfter": "",
+			"rollback": false,
+			"parameters": [
+			  {
+				"name": "path",
+				"value": "c:/test/"
+			  }
+			]
+		  },
+		  {
+			"name": "copyfiles",
+			"description": "copy files from source to destination",
+			"type": "CopyFiles",
+			"runAfter": "createdirectory",
+			"rollback": false,
+			"parameters": [
+			  {
+				"name": "source",
+				"value": "c:/test/source"
+			  },
+			  {
+				"name": "destination",
+				"value": "c:/test/destination"
+			  }
+			]
+		  },
+		  {
+			"name": "startstopwindowsservice",
+			"description": "start windows service",
+			"type": "ManageWindowsService",
+			"runAfter": "copyfiles",
+			"rollback": false,
+			"parameters": [
+			  {
+				"name": "servicename",
+				"value": "testservice"
+			  },
+			  {
+				"name": "action",
+				"value": "start"
+			  }
+			]
+		  }
+		]
+	  },
+	  {
+		"name": "secondworkflow",
+		"description": "second workflow description",
+		"runAfter": "firstworkflow",
+		"activities": [
+		  {
+			"name": "createdirectorysecond",
+			"description": "create directory recursively",
+			"type": "CreateDirectory",
+			"runAfter": "",
+			"rollback": false,
+			"parameters": [
+			  {
+				"name": "path",
+				"value": "c:/testsecond"
+			  }
+			]
+		  }
+		]
+	  }
+	]
+  }

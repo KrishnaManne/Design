@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<WorkflowDefinition
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<Workflows>
+		<Workflow>
+			<Name>firstworkflow</Name>
+			<Description>first workflow description</Description>
+			<Activities>
+				<Activity>
+					<Name>createdirectory</Name>
+					<Description>create directory recursively</Description>
+					<Type>CreateDirectory</Type>
+          <Rollback>false</Rollback>
+					<Parameters>
+						<Parameter>
+							<Name>path</Name>
+							<Value>c:/test/</Value>
+						</Parameter>
+					</Parameters>
+				</Activity>
+				<Activity>
+					<Name>copyfiles</Name>
+					<Description>copy files from source to destination</Description>
+					<Type>CopyFiles</Type>
+          <Rollback>false</Rollback>
+					<Parameters>
+						<Parameter>
+							<Name>source</Name>
+							<Value>c:/test/source</Value>
+						</Parameter>
+						<Parameter>
+							<Name>destination</Name>
+							<Value>c:/test/destination</Value>
+						</Parameter>
+					</Parameters>
+				</Activity>
+				<Activity>
+					<Name>startstopwindowsservice</Name>
+					<Description>start or stop windows service</Description>
+					<Type>ManageWindowsService</Type>
+          <Rollback>false</Rollback>
+					<Parameters>
+						<Parameter>
+							<Name>servicename</Name>
+							<Value>testservice</Value>
+						</Parameter>
+						<Parameter>
+							<Name>action</Name>
+							<Value>start</Value>
+						</Parameter>
+					</Parameters>
+				</Activity>
+			</Activities>
+		</Workflow>
+		<Workflow>
+			<Name>secondworkflow</Name>
+			<Description>second workflow description</Description>
+			<Activities>
+				<Activity>
+					<Name>createdirectorysecond</Name>
+					<Description>create directory recursively</Description>
+					<Type>CreateDirectory</Type>
+          <Rollback>false</Rollback>
+					<Parameters>
+						<Parameter>
+							<Name>path</Name>
+							<Value>c:/testsecond</Value>
+						</Parameter>
+					</Parameters>
+				</Activity>
+			</Activities>
+		</Workflow>
+	</Workflows>
+</WorkflowDefinition>
